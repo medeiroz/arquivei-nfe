@@ -66,7 +66,7 @@ class Arquivei
 
         foreach ($responses as $response) {
             $parsed = $this->parse($response);
-            $this->store($parsed);
+            $this->store(...$parsed);
         }
     }
 
