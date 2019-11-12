@@ -46,10 +46,9 @@ class Arquivei
         }
     }
 
-    public function requestAll(): array
+    public function requestAll(int $cursor = 0): array
     {
         $responses = [];
-        $cursor = 0;
 
         do {
             $responses[] = $response = $this->request($cursor);
@@ -60,9 +59,9 @@ class Arquivei
         return $responses;
     }
 
-    public function requestAllAndStore(): array
+    public function requestAllAndStore(int $cursor = 0): array
     {
-        $responses = $this->requestAll();
+        $responses = $this->requestAll($cursor);
 
         foreach ($responses as $response) {
             $parsed = $this->parse($response);

@@ -163,11 +163,11 @@ $responses = $arquivei->requestAll();
 requestAllAndStore
 ```php
 $arquivei = new Arquivei(MyStore Implementing StoreInterface);
-$store = $arquivei->requestAllAndStore()
+$responses = $arquivei->requestAllAndStore();
 ```
 
 
-Examples Store implementing StoreInterface
+Example Store implementing StoreInterface
 ```php
 class MyStore implements StoreInterface {
     public function store (XmlParser $nfe): bool
