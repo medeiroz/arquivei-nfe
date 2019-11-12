@@ -83,14 +83,16 @@ class ArquiveiRequest
             $body = json_decode($exception->getResponse()->getBody()->getContents());
             $code = $exception->getResponse()->getStatusCode();
 
-            if ($code === 401) {
-                throw new UnauthorizedException($body->error ?? 'Unauthorized');
-
-            } elseif ($code === 503) {
-                throw new ServiceTemporarilyUnavailableException('503 Service Temporarily Unavailable');
+            switch($code) {
+                case 401:
+                    throw new UnauthorizedException($body->error ?? 'Unauthorized');
+                    break;
+                case 502:
+                case 503:
+                    throw new ServiceTemporarilyUnavailableException('503 Service Temporarily Unavailable');
+                default:
+                    throw $exception;
             }
-
-            throw $exception;
         }
     }
 
