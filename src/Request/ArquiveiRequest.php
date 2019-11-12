@@ -2,8 +2,8 @@
 
 namespace MedeirosDev\Arquivei\Request;
 
+use Exception;
 use GuzzleHttp\Client;
-use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Handler\CurlHandler;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
@@ -78,7 +78,7 @@ class ArquiveiRequest
                 )
             );
 
-        } catch (ClientException $exception) {
+        } catch (Exception $exception) {
 
             $body = json_decode($exception->getResponse()->getBody()->getContents());
             $code = $exception->getResponse()->getStatusCode();
