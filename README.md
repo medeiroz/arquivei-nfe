@@ -10,9 +10,18 @@ Documentation -
 
 ## Installation
 
-Install the package using composer:
-
+Import private package 
 ```
+"repositories": [
+        {
+            "type": "vcs",
+            "url": "ssh://git@github.com/medeirosdev/arquivei-nfe.git"
+        }
+    ],
+```
+Install the package using composer:
+```bash
+$ export COMPOSER_MEMORY_LIMIT=-1
 $ composer require medeirosdev/arquivei-nfe
 ```
 
