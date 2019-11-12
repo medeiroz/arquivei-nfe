@@ -60,7 +60,7 @@ class Arquivei
         return $responses;
     }
 
-    public function requestAllAndStore(): void
+    public function requestAllAndStore(): array
     {
         $responses = $this->requestAll();
 
@@ -68,6 +68,8 @@ class Arquivei
             $parsed = $this->parse($response);
             $this->store(...$parsed);
         }
+
+        return $responses;
     }
 
     public function store(XmlParser ...$parsed): bool
