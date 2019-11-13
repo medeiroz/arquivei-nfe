@@ -13,6 +13,7 @@ use MedeirosDev\Arquivei\Helper;
 use MedeirosDev\Arquivei\Arquivei;
 use MedeirosDev\Arquivei\Response\ArquiveiResponse;
 use MedeirosDev\Arquivei\Stack\LicenseMiddleware;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class ArquiveiRequest
@@ -84,11 +85,12 @@ class ArquiveiRequest
             $code = $exception->getResponse()->getStatusCode();
 
             switch($code) {
-                case 401:
+                case Response::HTTP_UNAUTHORIZED:
                     throw new UnauthorizedException($body->error ?? 'Unauthorized');
                     break;
-                case 502:
-                case 503:
+                case Response::HTTP_BAD_GATEWAY:
+                case Response::HTTP_SERVICE_UNAVAILABLE:
+                case Response::HTTP_GATEWAY_TIMEOUT:
                     throw new ServiceTemporarilyUnavailableException('503 Service Temporarily Unavailable');
                 default:
                     throw $exception;
