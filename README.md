@@ -131,14 +131,14 @@ parse(int $cursor = 0)
 ```php
 $arquivei = new Arquivei;
 $cursor = 0;
-$response = $arquivei->request(0);
+$response = $arquivei->request($cursor);
 $listNfe = $arquivei->parse($response);
 ```
 
 store(XmlParser ...$listNfe)
 ```php
 $arquivei = new Arquivei;
-$response = $arquivei->request(0);
+$response = $arquivei->request();
 $listNfe = $arquivei->parse($response);
 
 $arquivei->setStore(MyStore Implementing StoreInterface);
@@ -148,7 +148,7 @@ $store = $arquivei->store(...$ListNfe)
 store(XmlParser ...$listNfe)
 ```php
 $arquivei = new Arquivei(MyStore Implementing StoreInterface);
-$response = $arquivei->request(0);
+$response = $arquivei->request();
 $listNfe = $arquivei->parse($response);
 
 $store = $arquivei->store(...$ListNfe)
