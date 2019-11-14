@@ -136,18 +136,30 @@ $listNfe = $arquivei->parse($response);
 ```
 
 store(XmlParser ...$listNfe)
+
+Example Store implementing StoreInterface
+```php
+class MyStore implements StoreInterface {
+    public function store (XmlParser $nfe): bool
+    {
+        Storage::disk('local')->put($nfe->accessKey . '.xml', $nfe->xml);
+        return true;
+    }
+}
+```
+
 ```php
 $arquivei = new Arquivei;
 $response = $arquivei->request();
 $listNfe = $arquivei->parse($response);
 
-$arquivei->setStore(MyStore Implementing StoreInterface);
+$arquivei->setStore(new MyStore());
 $store = $arquivei->store(...$ListNfe)
 ```
 
 store(XmlParser ...$listNfe)
 ```php
-$arquivei = new Arquivei(MyStore Implementing StoreInterface);
+$arquivei = new Arquivei(new MyStore());
 $response = $arquivei->request();
 $listNfe = $arquivei->parse($response);
 
@@ -162,18 +174,6 @@ $responses = $arquivei->requestAll();
 
 requestAllAndStore
 ```php
-$arquivei = new Arquivei(MyStore Implementing StoreInterface);
+$arquivei = new Arquivei(new MyStore());
 $responses = $arquivei->requestAllAndStore();
-```
-
-
-Example Store implementing StoreInterface
-```php
-class MyStore implements StoreInterface {
-    public function store (XmlParser $nfe): bool
-    {
-        Storage::disk('local')->put($nfe->accessKey . '.xml', $nfe->xml);
-        return true;
-    }
-}
 ```
