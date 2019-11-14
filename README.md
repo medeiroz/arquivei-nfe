@@ -137,8 +137,8 @@ $listNfe = $arquivei->parse($response);
 
 store(XmlParser ...$listNfe)
 
-Example Store implementing StoreInterface
 ```php
+// Example Store implementing StoreInterface
 class MyStore implements StoreInterface {
     public function store (XmlParser $nfe): bool
     {
